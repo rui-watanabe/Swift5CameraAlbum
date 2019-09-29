@@ -7,13 +7,33 @@
 //
 
 import UIKit
+import Photos
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    
+    @IBOutlet weak var backImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
+        
+        PHPhotoLibrary.requestAuthorization { (status) in
+            
+            switch(status){
+                
+            case .authorized:
+                print("許可されています。")
+            case .denied:
+                print("拒否されました。")
+            case .notDetermined:
+                print("未設定です。")
+            case .restricted:
+                print("制限されています")
+  
+            }
+            
+        }
+        
+    
 
 
 }
